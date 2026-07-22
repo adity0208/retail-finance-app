@@ -1,0 +1,1 @@
+Place app icon PNGs here: icon-192.png and icon-512.png for the PWA manifest. Replace with your store logo as needed.

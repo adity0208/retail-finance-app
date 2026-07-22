@@ -3,6 +3,11 @@ import cors from 'cors';
 import 'dotenv/config';
 import { connectDB } from './config/db.js';
 import transactionRoutes from './routes/transactionRoutes.js'; // New Import Shard
+import electronicsRoutes from './routes/electronicsRoutes.js';
+import clothingRoutes from './routes/clothingRoutes.js';
+import customerRoutes from './routes/customerRoutes.js';
+import searchRoutes from './routes/searchRoutes.js';
+import checkoutRoutes from './routes/checkoutRoutes.js';
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -15,7 +20,12 @@ app.use(cors());
 app.use(express.json());
 
 // Mounting Core Architectural Routes
-app.use('/api/transactions', transactionRoutes); // New Routing Mount Shard
+app.use('/api/transactions', transactionRoutes); // Existing financial ledger routes
+app.use('/api/electronics', electronicsRoutes);  // Electronics inventory (was Coolers)
+app.use('/api/clothing', clothingRoutes);         // Clothing SKU management
+app.use('/api/customers', customerRoutes);       // Customer directory
+app.use('/api/search', searchRoutes);             // Global quick-lookup search by code
+app.use('/api/checkout', checkoutRoutes);         // POS checkout endpoint
 
 // Infrastructure Health Check
 app.get('/api/health', (req, res) => {
